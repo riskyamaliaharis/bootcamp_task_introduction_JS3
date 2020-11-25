@@ -17,11 +17,16 @@ const buyPhone = (brand) => {
     })
 }
 
+
+//Program 2
 const scholarship = (name, ielts, gpa) => {
     return new Promise ((resolve, reject) => {
         setTimeout(() =>{
+            let status;
             if (typeof ielts === 'number' && typeof gpa === 'number'){
-                (ielts.toFixed(2) >= 6.00 && gpa.toFixed(2) >= 3.75 && gpa.toFixed(2)<=4.00) ? resolve("Passed") : resolve("Failed") 
+                (ielts.toFixed(2) >= 6.00 && gpa.toFixed(2) >= 3.75 && gpa.toFixed(2)<=4.00) ? 
+                status ="passed" : status="failed"
+                resolve(status)                
             } else {
                 reject(new Error(`Dear ${name}. Your data is not correct`))
             }
@@ -29,25 +34,35 @@ const scholarship = (name, ielts, gpa) => {
     }, 2000)
 }
 
-/*
-Promise.all([buyPhone('Cherrybelle'), scholarship('Amanda', 6.00, 3.00)])
-    .then(responseSuccess => {
-        const [buyPhone, scholarship] = responseSuccess
-        console.log(buyPhone('Cherrybelle'))
-        console.log(scholarship('Amanda', 6.00, 3.00))
-    })
-    .catch(responseError => console.log(responseError))
 
-*/
+async function queue() {
+    try {
+        console.log('Executing 1st program for 3s\n')
 
-console.log('-----Running program 1 for 3s----- \n')
+        await buyPhone('Cherrybelle').then(responseSuccess => console.log(responseSuccess)).catch(responseError => console.log(responseError))
 
-buyPhone('Cherrybelle')
-    .then(responseSuccess => console.log(responseSuccess))
-    .catch(responseError => console.log(responseError))
+        console.log('\nExecuting 2nd program for 2s\n')
 
-console.log('-----Running program 2 for 2s----- \n')
+        await scholarship('Amanda', 6.00, 3.78)
+        .then(responseSuccess => console.log(responseSuccess))
+        .catch(responseError => console.log(responseError))
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-scholarship('Amanda', 6.00, 3)
-    .then(responseSuccess => console.log(responseSuccess))
-    .catch(responseError => console.log(responseError))
+queue()
+
+// console.log('Executing 1st program for 3s\n')
+
+// buyPhone('Cherrybelle')
+//     .then(responseSuccess => console.log(responseSuccess))
+//     .catch(responseError => console.log(responseError))
+
+// console.log('Executing 2nd program for 2s\n')
+
+// scholarship('Amanda', 6.00, 3.78)
+//     .then(responseSuccess => console.log(responseSuccess))
+//     .catch(responseError => console.log(responseError))
+ 

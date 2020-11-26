@@ -24,6 +24,8 @@ cekHariKerja('senin')
     console.log(responseError)
 })
 
+// Then = Mengeluarkan hasil ketika fullfilled yang disimpan dalam resolve. catch = mengeluarkan hasil ketika rejected yang disimpan dalam reject
+
 // TRY CATCH
 
 async function monthAsync(){
@@ -34,6 +36,8 @@ async function monthAsync(){
         console.log(error)
     }
 }
+
+// Try = Blok untuk menyisipkan kode JS yang memungkinkan terjadi error. Catch = menangkap error pada blok try
 
 function showAsync(generate){
     return console.log(generate)
